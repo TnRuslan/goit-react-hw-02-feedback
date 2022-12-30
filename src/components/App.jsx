@@ -12,27 +12,11 @@ export class App extends Component{
     bad: 0
   }
 
-  addGoodFeedback = () => {
+  addFeedback = (e) => {
     this.setState(prevState => {
       return {
-        good: prevState.good += 1,
-      } 
-    })
-  }
-
-  addNeutralFeedback = () => {
-    this.setState(prevState => {
-      return {
-        neutral: prevState.neutral += 1,
-      } 
-    })
-  }
-
-  addBadFeedback = () => {
-    this.setState(prevState => {
-      return {
-        bad: prevState.bad += 1,
-      } 
+        [e.target.name]: prevState[e.target.name] += 1
+      }
     })
   }
 
@@ -47,18 +31,18 @@ export class App extends Component{
     return Math.round(this.state.good * 100 / this.countTotalFeedback())
   }
 
-
-
   render() {
     const {good, neutral, bad} = this.state
 
     return (
 
       <div>
-        <Section title='Please leave feedback'><FeedbackOptions
-          addGood={this.addGoodFeedback}
-          addNeutral={this.addNeutralFeedback}
-          addBad={this.addBadFeedback} />
+        <Section title='Please leave feedback'>
+          <FeedbackOptions
+            addFeedback={this.addFeedback}
+            goodFeedback={'good'}
+            neutralFeedback={'neutral'}
+            badFeedback={'bad'}/>
         </Section>
         {!!this.countTotalFeedback() ? <Section title="Statistics">
           <Statistics

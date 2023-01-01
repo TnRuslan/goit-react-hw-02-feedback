@@ -40,9 +40,8 @@ export class App extends Component{
         <Section title='Please leave feedback'>
           <FeedbackOptions
             addFeedback={this.addFeedback}
-            goodFeedback={'good'}
-            neutralFeedback={'neutral'}
-            badFeedback={'bad'}/>
+            options={['good', 'neutral', 'bad']}
+          />
         </Section>
         {!!this.countTotalFeedback() ? <Section title="Statistics">
           <Statistics
